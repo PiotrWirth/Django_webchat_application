@@ -73,7 +73,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'webchat.wsgi.application'
 ASGI_APPLICATION = 'webchat.asgi.application'
 
-CHANNELS_LAYERS ={
+CHANNEL_LAYERS ={
     'default':{
     'BACKEND':'channels.layers.InMemoryChannelLayer'
     }
