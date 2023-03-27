@@ -5,19 +5,24 @@
     {{ chatroom.name }}
 </div>
 
-<div id='chat-messages'>
-    {% for message in messages %}
-    <div class='message shadow-lg p-3 m-3 rounded-lg w-1/2 bg-blue-300'>
-        <div class='text-sm text-gray-500'>
+<div class='message-container m-10 overflow-auto h-[650px]' id='message-container'>
+    <div id='chat-messages'>
+        {% for message in messages %}
+        <div class='message shadow-lg p-3 m-3 rounded-lg w-1/2 bg-blue-300'>
+            <div class='text-sm text-gray-500'>
+                {{ message.user.username }}
+            </div>
             {{ message.user.username }}
+            <div class='text-sm text-gray-500'>
+                {{ message.date }}
+            </div>
         </div>
-        {{ message.user.username }}
-        <div class='text-sm text-gray-500'>
-            {{ message.date }}
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
+
+
+
 
 <div class='form-container fixed inset-x-0 bottom-0 bg-blue-500 p-4'>
     <form method="post">
@@ -50,6 +55,7 @@
                       '<div class="text-sm text-gray-500">' +
                        data.username + '</div>' + data.message + '<div class="text-sm text-gray-500">' + 'Now' + '</div>' + '</div>'
             document.getElementById('chat-messages').innerHTML+=html
+            scroll()
         }else{
             alert('This message was empty')
         }
@@ -72,5 +78,12 @@
         }))
         messageInput.value = ""
     }
+
+    function scroll(){
+        const mcontainer = document.getElementById('message-container')
+        mcontainer.scrollTop = mcontainer.scrollHeight
+    }
+
+
 </script>
 {% endblock content %}
